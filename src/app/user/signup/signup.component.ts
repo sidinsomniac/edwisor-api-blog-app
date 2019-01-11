@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup',
@@ -12,15 +11,16 @@ export class SignupComponent implements OnInit {
 
   public firstName: string;
   public lastName: string;
-  public mobile: number;
+  public mobileNumber: number;
   public email: string;
   public password: string;
   public apiKey: string;
+  public message: string;
+  public theme:string = 'alert-danger';
 
   constructor(
     private appService: AppService,
-    private router: Router,
-    private toastr: ToastrService
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -32,47 +32,38 @@ export class SignupComponent implements OnInit {
 
   public signUpFn() {
     if (!this.firstName) {
-      alert('Enter first name')
-      // this.toastr.warning('Enter first name')
+      this.message = 'Enter your first name';
     } else if (!this.lastName) {
-      alert('Enter last name')
-      // this.toastr.warning('Enter last name')
-    } else if (!this.mobile) {
-      alert('Enter mobile number')
-      // this.toastr.warning('Enter mobile number')
+      this.message = 'Enter your last name';
+    } else if (!this.mobileNumber) {
+      this.message = 'Enter your mobile number';
     } else if (!this.email) {
-      alert('Enter email ID')
-      // this.toastr.warning('Enter email ID')
+      this.message = 'Enter your email ID';
     } else if (!this.password) {
-      alert('Enter password')
-      // this.toastr.warning('Enter password')
+      this.message = 'Enter a password';
     } else if (!this.apiKey) {
-      alert('Enter your API key')
-      // this.toastr.warning('Enter your API key')
+      this.message = 'Enter your API key';
     } else {
       let data = {
         firstName: this.firstName,
         lastName: this.lastName,
-        mobile: this.mobile,
+        mobileNumber: this.mobileNumber,
         email: this.email,
         password: this.password,
         apiKey: this.apiKey
       }
-      console.log(data);
 
       this.appService.signUpFn(data).subscribe( apiResponse => {
         if (apiResponse.status === 200) {
-          alert('Signup succesful!')
-          // this.toastr.success('Signup succesful!')
+          this.message = 'Signup is successful! You will be redirected shortly';
+          this.theme = 'alert-success';
           setTimeout(() => {
             this.goToLogin();
           },2000)
-        } else {
-          alert(apiResponse.message);
-          // this.toastr.error(apiResponse.message);
         }
-      }, err => alert(err));
-      // }, err => this.toastr.error(err));
+      }, err => {
+        this.message = err.error.message;
+      });
     }
   }
 

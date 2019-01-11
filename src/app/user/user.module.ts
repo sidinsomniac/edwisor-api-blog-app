@@ -4,8 +4,6 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr'
 
 
 const routes: Routes = [
@@ -17,9 +15,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FormsModule,
-    ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    FormsModule
   ]
 })
 export class UserModule { }

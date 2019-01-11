@@ -26,7 +26,7 @@ export class AppService {
     const params = new HttpParams()
       .set('firstName', data.firstName)
       .set('lastName', data.lastName)
-      .set('mobile', data.mobile)
+      .set('mobileNumber', data.mobileNumber)
       .set('email', data.email)
       .set('password', data.password)
       .set('apiKey', data.apiKey);

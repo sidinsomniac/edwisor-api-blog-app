@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
 
   public email: string;
   public password: any;
+  public message:string;
+  public theme:string = 'alert-danger';
 
   constructor(
     private appService: AppService,
@@ -28,9 +30,9 @@ export class LoginComponent implements OnInit {
 
   public loginFn() {
     if (!this.email) {
-      alert('Enter email')
+      this.message = 'Enter your email ID!';
     } else if (!this.password) {
-      alert('Enter a password')
+      this.message = 'Enter a password!';
     } else {
       let data = {
         email: this.email,
@@ -40,13 +42,24 @@ export class LoginComponent implements OnInit {
       this.appService.loginFn(data)
         .subscribe(apiResponse => {
           if (apiResponse.status === 200) {
-            console.log(apiResponse);
-            this.router.navigate(['/chat']);
-          } else {
-            alert(apiResponse.message);
+
+            this.Cookie.set('authtoken',apiResponse.data.authToken)
+            this.Cookie.set('receiverId',apiResponse.data.userDetails.userId)
+            this.Cookie.set('receiverName',apiResponse.data.userDetails.firstName + ' ' + apiResponse.data.userDetails.lastName);
+
+            this.appService.setUserInfoLocalStrorage(apiResponse.data.userDetails);
+
+            this.message = 'Success! You will be logged in shortly.';
+            this.theme = 'alert-success';
+
+            setTimeout(() => {
+              this.router.navigate(['/chat']);
+            }, 1500)
           }
         },
-        err => alert(err));
+        err => {
+          this.message = err.error.message;
+        });
 
     }
 
