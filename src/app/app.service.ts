@@ -21,7 +21,7 @@ export class AppService {
       .set('password', data.password)
       .set('apiKey', data.apiKey);
 
-    return this.http.post<any>(this.baseUrl + 'user/signup', params).pipe(
+    return this.http.post<any>(this.baseUrl + 'users/signup', params).pipe(
       catchError(this.handleError)
     )
   }

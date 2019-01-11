@@ -1,3 +1,32 @@
-<p>
-  signup works!
-</p>
+<div class="container mt-5">
+  <form>
+    <div class="form-row form-group">
+      <div class="col">
+        <label>First Name</label>
+        <input [(ngModel)]="firstName" name="firstName" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter first name" required autofocus>
+      </div>
+      <div class="col">
+        <label>Last Name</label>
+        <input [(ngModel)]="lastName" name="lastName" type="text" class="form-control" placeholder="Enter last name" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email address</label>
+      <input [(ngModel)]="email" name="mobile" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" required>
+      <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input [(ngModel)]="password" name="email" type="password" class="form-control" placeholder="Password" required>
+    </div>
+    <div class="form-group">
+      <label>Phone</label>
+      <input [(ngModel)]="mobile" name="password" type="number" class="form-control" placeholder="Enter your mobile number" required>
+    </div>
+    <div class="form-group">
+      <label>API Key</label>
+      <input [(ngModel)]="apiKey" name="apiKey" type="text" class="form-control" placeholder="Enter you API key" required>
+    </div>
+    <button type="submit" class="btn btn-success" (click)='signUpFn()'>Submit</button>
+  </form>
+</div>
