@@ -54,7 +54,7 @@
     </div>
     <div class="col-12 col-sm-8 col-md-8 chat">
       <div class="chat-header clearfix mobileMenu" *ngIf="receiverName">
-        <first-char [userName]="receiverName" [userBg]="'blue'" [userColor]="'white'"></first-char>
+        <first-char [name]="receiverName" [userBg]="'blue'" [userColor]="'white'" (notify)="showUserName($event)"></first-char>
         <div class="chat-about">
           <div class="chat-with">Chat with {{receiverName}}</div>
         </div>
@@ -75,7 +75,8 @@
               <i class="fa fa-circle me" *ngIf="message.senderId == userInfo.userId"></i>
             </div>
             <div class="message" [ngClass]="{'float-right other-message': message.senderId == userInfo.userId, 'my-message': message.senderId != userInfo.userId}">
-              {{message?.message }}
+              {{message?.message | removeSpecialCharPipe: '#' | removeSpecialCharPipe: '$'}}
+              <!-- {{message?.message }} -->
             </div>
           </li>
         </ul>

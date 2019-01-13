@@ -386,3 +386,7 @@
 .name {
   float: left;
 }
+
+.displayBlockMobile {
+  position: static !important;
+}

@@ -158,7 +158,7 @@ export class ChatboxComponent implements OnInit {
       this.pushToChatWindow(chatMsgObject)
     }
     else{
-      alert('text message can not be empty')
+      alert('text message cannot be empty')
     }
   }
 
@@ -194,5 +194,9 @@ export class ChatboxComponent implements OnInit {
       }, (err) => {
         alert('some error occured')
       });
+  }
+
+  public showUserName =(name:string)=>{
+    alert("You are chatting with "+ name);
   }
 }

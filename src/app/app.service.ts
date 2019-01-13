@@ -50,7 +50,7 @@ export class AppService {
   public logout(): Observable<any> {
     const params = new HttpParams()
       .set('authToken', this.cookie.get('authtoken'))
-    return this.http.post(`${this.baseUrl}/api/v1/users/logout`, params);
+    return this.http.post(`${this.baseUrl}users/logout`, params);
   }
   
   public handleError(error:HttpErrorResponse) {

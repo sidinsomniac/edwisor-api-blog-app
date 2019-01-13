@@ -10,12 +10,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppService } from './app.service';
 import { SocketService } from './socket.service';
 import { ChatboxComponent } from './chat/chatbox/chatbox.component';
-import { SignupComponent } from './user/signup/signup.component';
+import { RemoveSpecialCharPipe } from './shared/pipe/remove-special-char.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChatboxComponent
+    ChatboxComponent,
+    RemoveSpecialCharPipe    
   ],
   imports: [
     BrowserModule,
